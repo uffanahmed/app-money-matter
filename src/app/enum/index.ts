@@ -7,6 +7,7 @@ export const enum Product {
 
 
 export const enum MortgageOptions {
+    Info = 'Info',
     UnlockMortgagePotential = 'UnlockMortgagePotential',
     CustomizeMortgagePlan = 'CustomizeMortgagePlan',
     A = 'A',
@@ -15,6 +16,7 @@ export const enum MortgageOptions {
 };
 
 export const enum CarFinanceOptions {
+    Info = 'Info',
     UnlockMortgagePotential = 'UnlockMortgagePotential',
     CustomizeMortgagePlan = 'CustomizeMortgagePlan',
     A = 'A',
@@ -23,6 +25,7 @@ export const enum CarFinanceOptions {
 };
 
 export const enum PersonalLoanOptions {
+    Info = 'Info',
     UnlockMortgagePotential = 'UnlockMortgagePotential',
     CustomizeMortgagePlan = 'CustomizeMortgagePlan',
     A = 'A',

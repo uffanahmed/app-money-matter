@@ -4,12 +4,12 @@ import Image from "next/image";
 import logo from "./../assets/brand/logo64.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigationContext } from "../context/NavigationContext";
-import { productDefinition } from "./../constant/products";
-import { ProductDefinition } from "../types/ProductDefinition";
+import { productDefinition } from "../constant/productDefinition";
+import { ProductDefinition, ProductOptionDefinition } from "../types/ProductDefinition";
 import ProductOptions from "../components/ProductOptions";
 
 export default function Products() {
-  const { activeProduct, setActiveProduct } =
+  const { activeProduct, activeProductOption, setActiveProduct } =
     useNavigationContext();
 
   return (
@@ -59,7 +59,11 @@ export default function Products() {
                   {productDefinition.map(
                     (product: ProductDefinition, index: number) => (
                       <div key={index}>
-                        {product.key === activeProduct && product.pageComponent}
+                        {product.options && product.options.map((option: ProductOptionDefinition, index, numbher) => (
+                          <div key={index}>
+                            {product.key === activeProduct && option.key === activeProductOption && option.page}
+                          </div>
+                        ))}
                       </div>
                     )
                   )}

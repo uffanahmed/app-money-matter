@@ -5,7 +5,7 @@ import React, {
     PropsWithChildren,
   } from 'react';
 import { Product, ProductOptions } from '../enum';
-import { productDefinition } from '../constant/products';
+import { productDefinition } from '../constant/productDefinition';
 import { ProductDefinition } from '../types/ProductDefinition';
 
 const useNavigationContextValue = () => {
