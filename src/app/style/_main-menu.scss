@@ -1,0 +1,43 @@
+ul.main-menu {
+    list-style: none;
+    margin: 0 10px 0 20px;
+    padding: 0;
+
+    li {
+      overflow: hidden;
+
+      a {
+        font-size: 12px;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+
+        .icon {
+          transition: all 0.5s;
+          left: -10px;
+          top: -2px;
+          position: absolute;
+        }
+
+        &:hover {
+          padding-left: 10px;
+          color: $primaryColor;
+
+          .icon {
+            left: 0px;
+            color: $primaryColor;
+          }
+        }
+
+        &.active {
+          padding-left: 10px;
+          color: $primaryColor;
+
+          .icon {
+            left: 0px;
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }

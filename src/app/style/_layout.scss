@@ -1,0 +1,225 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #e1d8d8;
+
+  .page {
+    background-color: #f3efef;
+    position: fixed;
+    top: $pageMargin;
+    left: $pageMargin;
+    right: $pageMargin;
+    bottom: $pageMargin;
+    border-radius: $pageBorderRadius;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 0 20px #aaa;
+
+    &-header {
+      min-height: $headerHeight;
+      max-height: $headerHeight;
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+    &-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex: 10;
+    }
+    &-products {
+      max-width: $productWidth;
+      min-width: $productWidth;
+      // display: flex;
+      flex: 1;
+    }
+    &-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      display: flex;
+      flex: 10;
+    }
+    &-navigation {
+      min-width: $navigationWidth;
+      max-width: $navigationWidth;
+      display: flex;
+      flex: 1;
+    }
+    &-content {
+      display: flex;
+      flex: 10;
+
+      &-wrapper {
+        position: fixed;
+        top: $pageMargin + $headerHeight;
+        left: $pageMargin + $productWidth + $navigationWidth;
+        right: $pageMargin + $contentScrollPanRightMargin;
+        bottom: $pageMargin + $footerHeight;
+        border-radius: 20px;
+        background: #fcfcfc;
+        padding: 20px;
+      }
+    }
+    &-footer {
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      justify-content: space-around;
+      max-height: $footerHeight;
+      min-height: $footerHeight;
+      flex: 1;
+      padding: 5px;
+      align-items: center;
+
+      &-content {
+        nav {
+          font-size: 13px;
+
+          a {
+            text-decoration: none;
+            margin: 0;
+            padding: 0 20px;
+            border-right: 1px dashed #888;
+            color: #aaa;
+            transition: all 0.3s;
+
+            &:hover {
+              text-decoration: underline;
+              color: #333;
+            }
+
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    position: fixed;
+    top: $pageMargin + $headerHeight + $contentScrollPanPadding;
+    left: $pageMargin + $productWidth + $navigationWidth +
+      $contentScrollPanPadding;
+    right: $pageMargin + $contentScrollPanRightMargin + $contentScrollPanPadding;
+    bottom: $pageMargin + $footerHeight + $contentScrollPanPadding;
+    overflow: auto;
+  }
+
+  .brand {
+    &-logo {
+      border: 2px solid $primaryColor;
+      width: $brandLogoSize - 15px;
+      height: $brandLogoSize - 15px;
+      margin-left: ($productWidth - ($brandLogoSize - 15px)) / 2;
+      margin-right: ($productWidth - ($brandLogoSize - 15px)) / 2;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: $brandLogoSize/2.5;
+        height: $brandLogoSize/2.5;
+      }
+    }
+
+    &-name {
+      font-size: 16px;
+      color: $primaryColor;
+      font-weight: bold;
+    }
+  }
+}
+
+// body {
+
+//   .page {
+
+//     &-body {
+//       flex-direction: column;
+//     }
+//     &-products {
+//       max-width: 100%;
+//       min-width: 100%;
+//       max-height: 100px;
+//     }
+//   }
+
+//   ul.product-menu {
+//     flex-direction: row;
+//     align-items: flex-start;
+//     border-right: none;
+//   }
+// }
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Your CSS for phones goes here */
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  /* Your CSS for small devices goes here */
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  /* Your CSS for tablets goes here */
+
+  body {
+    .page {
+      border-radius: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      &-content {
+        &-wrapper {
+          top: $headerHeight;
+          left: $productWidth + $navigationWidth;
+          right: $contentScrollPanRightMargin;
+          bottom: $footerHeight;
+        }
+      }
+    }
+    .main-content {
+      top: $headerHeight + $contentScrollPanPadding;
+      left: $productWidth + $navigationWidth +
+        $contentScrollPanPadding;
+      right: $contentScrollPanRightMargin + $contentScrollPanPadding;
+      bottom: $footerHeight + $contentScrollPanPadding;
+    }
+  }
+
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  /* Your CSS for desktops goes here */
+}
+
+/* Extra large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {
+  /* Your CSS for large desktops goes here */
+}
+
+/* Ultra-wide devices (above 1400px) */
+@media (min-width: 1400px) {
+  /* Your CSS for ultra-wide screens goes here */
+}
