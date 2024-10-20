@@ -1,5 +1,5 @@
 {
-  "name": "my-nextjs-app",
+  "name": "Money-Matters",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,24 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@fontsource/roboto": "^5.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@mui/icons-material": "^6.1.4",
-    "@mui/material": "^6.1.4",
-    "@mui/styled-engine-sc": "^6.1.4",
+    "antd": "^5.21.4",
     "next": "14.2.15",
     "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.80.3",
-    "scss": "^0.2.4",
-    "styled-components": "^6.1.13"
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -37,9 +31,5 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
   }
 }

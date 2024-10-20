@@ -7,7 +7,7 @@ ul.main-menu {
       overflow: hidden;
 
       a {
-        font-size: 12px;
+        font-size: 15px;
         transition: all 0.3s;
         cursor: pointer;
         position: relative;
@@ -20,7 +20,7 @@ ul.main-menu {
         }
 
         &:hover {
-          padding-left: 10px;
+          padding-left: 15px;
           color: $primaryColor;
 
           .icon {
@@ -30,7 +30,7 @@ ul.main-menu {
         }
 
         &.active {
-          padding-left: 10px;
+          padding-left: 15px;
           color: $primaryColor;
 
           .icon {

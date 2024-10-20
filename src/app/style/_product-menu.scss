@@ -33,7 +33,8 @@ ul.product-menu {
           align-items: center;
 
           svg {
-            width: $productIconSize / 1.5;
+            width: $productIconSize / 1.8;
+            height: $productIconSize / 1.8;
             color: #888;
           }
         }
