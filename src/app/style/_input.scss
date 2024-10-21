@@ -5,3 +5,14 @@
 .ant-dropdown-menu {
     max-height: 300px;
 }
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px 10px 10px;
+    margin-top: 20px;
+}
+.form-error-message {
+    color: red;
+    font-size: 12px;
+    margin: 5px 20px;
+}

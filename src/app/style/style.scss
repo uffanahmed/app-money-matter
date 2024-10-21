@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
-
 @import '_variables';
 @import '_html';
 @import '_layout';
 @import '_main-menu';
 @import '_product-menu';
 @import '_input';
+
+// Other Components
+@import '../components/SpecialOfferCard/index.scss';

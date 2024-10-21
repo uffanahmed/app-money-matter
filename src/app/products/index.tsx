@@ -19,7 +19,7 @@ export default function Products() {
           <Image src={logo} alt={"Logo"} />
         </div>
         <div className="brand-name">
-          Money Matters (Financial Empowerment Hub)
+          Financial Empowerment Hub
         </div>
       </div>
       <div className="page-body">

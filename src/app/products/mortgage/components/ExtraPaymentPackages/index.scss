@@ -1,0 +1,68 @@
+.extra-payment {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 -10px;
+
+  .packages {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // max-width: 500px;
+    // min-width: 300px;
+    margin: 5px;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Your CSS for phones goes here */
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  /* Your CSS for small devices goes here */
+  .extra-payment {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  /* Your CSS for tablets goes here */
+  .extra-payment {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  /* Your CSS for desktops goes here */
+  .extra-payment {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Extra large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {
+  /* Your CSS for large desktops goes here */
+  .extra-payment {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Ultra-wide devices (above 1400px) */
+@media (min-width: 1400px) {
+  /* Your CSS for ultra-wide screens goes here */
+  .extra-payment {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Extra
+@media (min-width: 1500px) {
+  /* Your CSS for ultra-wide screens goes here */
+  .extra-payment {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

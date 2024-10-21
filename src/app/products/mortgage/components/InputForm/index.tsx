@@ -9,6 +9,8 @@ import {
   PoundOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
+import { MortgageType } from "../../utils/mortgageCalculator";
+import "./index.scss";
 
 export type MortgageData = {
   currency: string;
@@ -16,15 +18,17 @@ export type MortgageData = {
   interest: number;
   date: string;
   years: number;
-  scheme: string;
+  scheme: MortgageType;
   isExtraPayment?: boolean;
   // extraPayment?: MortgageExtraPayment[],
 }
 
 export function InputForm({
   onSubmit,
+  buttonLabel,
 }: {
   onSubmit?: (data: MortgageData | null) => void;
+  buttonLabel?: string;
 }) {
   const [blockForm, setBlockForm] = useState(false);
   const [error, setError] = useState(false);
@@ -41,7 +45,6 @@ export function InputForm({
 
   const submit = () => {
     if (
-      !formData.currency ||
       !formData.amount ||
       !formData.interest ||
       !formData.date ||
@@ -75,11 +78,11 @@ export function InputForm({
   //   setFormData({ ...formData, extraPayment: data });
   // };
 
-  const currency: MenuProps["items"] = [
-    { label: "Euro", key: "EUR", icon: <EuroOutlined /> },
-    { label: "Dollar", key: "USD", icon: <DollarOutlined /> },
-    { label: "Pound", key: "GBP", icon: <PoundOutlined /> },
-  ];
+  // const currency: MenuProps["items"] = [
+  //   { label: "Euro", key: "EUR", icon: <EuroOutlined /> },
+  //   { label: "Dollar", key: "USD", icon: <DollarOutlined /> },
+  //   { label: "Pound", key: "GBP", icon: <PoundOutlined /> },
+  // ];
 
   const years: MenuProps["items"] = [
     { label: "1 Year", key: "1" },
@@ -124,15 +127,16 @@ export function InputForm({
       <div className="mortgage-form">
         {blockForm && (
           <div className="block-form">
-            <Button type="primary" onClick={reset}>
+            <a className="link" onClick={reset}>
               Recalculate
-            </Button>
+            </a>
+            <div className="background"></div>
           </div>
         )}
 
-        {/* {JSON.stringify(formData)} */}
         <Row>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          {/* Disable Currency Selection */}
+          {/* <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Currency</label>
             <Dropdown
               menu={{
@@ -153,29 +157,29 @@ export function InputForm({
                 </Space>
               </Button>
             </Dropdown>
-          </Col>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          </Col> */}
+          <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Mortgage Amount</label>
             <InputNumber<number>
-              prefix={formData.currency === "EUR"
-                ? "€"
-                : formData.currency === "USD"
-                ? "$"
-                : formData.currency === "GBP"
-                ? "£"
-                : "-"}
+              // prefix={formData.currency === "EUR"
+              //   ? "€"
+              //   : formData.currency === "USD"
+              //   ? "$"
+              //   : formData.currency === "GBP"
+              //   ? "£"
+              //   : "-"}
               style={{ width: "100%" }}
               defaultValue={formData.amount}
               formatter={(value) =>
-                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                `€${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               }
               parser={(value) =>
-                value?.replace(/\$\s?|(,*)/g, "") as unknown as number
+                value?.replace(/\€\s?|(,*)/g, "") as unknown as number
               }
               onChange={(e) => setFormData({ ...formData, amount: +(e || 0) })}
             />
           </Col>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Interest Percentage</label>
             <InputNumber<number>
               style={{ width: "100%" }}
@@ -187,7 +191,7 @@ export function InputForm({
               onChange={(e) => setFormData({ ...formData, interest: +(e || 0) })}
             />
           </Col>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Interest rate period</label>
             <Dropdown
               menu={{
@@ -210,7 +214,7 @@ export function InputForm({
               </Button>
             </Dropdown>
           </Col>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Mortgage Scheme</label>
             <Dropdown
               menu={{
@@ -230,7 +234,7 @@ export function InputForm({
               </Button>
             </Dropdown>
           </Col>
-          <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>Start Date</label>
             <DatePicker
               style={{ width: "100%" }}
@@ -243,7 +247,7 @@ export function InputForm({
               }
             />
           </Col>
-          {/* <Col className="input-cell" xs={24} sm={12} md={8} xl={6}>
+          {/* <Col className="input-cell" xs={24} sm={24} md={24} lg={12} xl={8}>
             <label>I have different payment plan</label>
             <Switch
               style={{ marginTop: 4 }}
@@ -264,10 +268,10 @@ export function InputForm({
         <div className="form-footer">
           <div className="submit-button">
             {error && (
-              <span className="error-message">All fields are required.</span>
+              <span className="form-error-message">All fields are required.</span>
             )}
             <Button type="primary" onClick={submit}>
-              Calculate
+              {buttonLabel || 'Calculate'}
             </Button>
           </div>
         </div>

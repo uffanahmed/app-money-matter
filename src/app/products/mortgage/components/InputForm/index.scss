@@ -1,0 +1,55 @@
+.mortgage-form {
+  position: relative;
+
+  .block-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: #eee;
+      opacity: 1;
+      background-image: repeating-linear-gradient(
+          45deg,
+          #fcfcfc 25%,
+          transparent 25%,
+          transparent 75%,
+          #fcfcfc 75%,
+          #fcfcfc
+        ),
+        repeating-linear-gradient(
+          45deg,
+          #fcfcfc 25%,
+          #eee 25%,
+          #eee 75%,
+          #fcfcfc 75%,
+          #fcfcfc
+        );
+      background-position: 0 0, 9px 9px;
+      background-size: 18px 18px;
+    }
+    .link {
+        z-index: 2;
+        color: #1b89ff;
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+            color: rgb(24, 127, 237);
+        }
+    }
+  }
+}
