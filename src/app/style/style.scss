@@ -9,5 +9,8 @@
 @import '_product-menu';
 @import '_input';
 
+// Override Design
+@import '_antui-override';
+
 // Other Components
 @import '../components/SpecialOfferCard/index.scss';
