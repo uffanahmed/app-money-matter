@@ -6,6 +6,7 @@ import { MortgagePlan } from "../../utils/mortgageCalculator";
 import "./index.scss";
 import DataTable from "@/app/components/DataTable";
 import MortgageSummary from "../MortgageSummary";
+import ChartInstallmentView from "../ChartInstallmentView";
 import ChartRegularAndExtraPayComparison from "../ChartRegularAndExtraPayComparison";
 
 export type ExtraPaymentPackagesDetailsProps = {
@@ -22,11 +23,6 @@ export default function ExtraPaymentPackagesDetails({
   return (
     <>
       <MortgageSummary mortgagePlan={paymentPlanExtra} />
-
-      <ChartRegularAndExtraPayComparison
-        mortgageData={mortgageData}
-        paymentPlan={paymentPlanRegular}
-      />
 
       <br />
       <h4>This will be your payment plan with extra payment</h4>
@@ -60,6 +56,28 @@ export default function ExtraPaymentPackagesDetails({
             key: "outstandingBalance",
           },
         ]}
+      />
+
+      <br />
+      <h4>Comparison of extra payment vs regular payment (Interest and Principle amount)</h4>
+      <ChartRegularAndExtraPayComparison
+        mortgageData={mortgageData}
+        paymentRegular={paymentPlanRegular}
+        paymentExtra={paymentPlanExtra}
+      />
+
+      <br />
+      <h4>Portion of Interest you will pay in installment every year (with regular payment)</h4>
+      <ChartInstallmentView
+        mortgageData={mortgageData}
+        paymentPlan={paymentPlanRegular}
+      />
+
+      <br />
+      <h4>Portion of Interest you will pay in installment every year (with extra payment)</h4>
+      <ChartInstallmentView
+        mortgageData={mortgageData}
+        paymentPlan={paymentPlanExtra}
       />
     </>
   );
