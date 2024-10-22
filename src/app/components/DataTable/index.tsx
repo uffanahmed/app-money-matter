@@ -9,7 +9,12 @@ export type DataTableProps = {
   config?: {
     height?: number;
   };
-  columns: Array<{ label: string; type?: ColumnType; key: string }>;
+  columns: Array<{
+    label: string;
+    type?: ColumnType;
+    key: string;
+    custom?: (item: any) => {};
+  }>;
   dataItems: Array<any>;
 };
 
@@ -40,7 +45,9 @@ export default function DataTable({
                     className={"type-" + (column.type || "string")}
                     style={{ width: `${100 / columns.length}%` }}
                   >
-                    {column.type === "currency"
+                    {column.custom
+                      ? column.custom(item)
+                      : column.type === "currency"
                       ? currencyFormat(item[column.key])
                       : item[column.key]}
                   </td>

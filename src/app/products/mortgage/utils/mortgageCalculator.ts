@@ -1,7 +1,10 @@
 export type MortgageType = 'LINEAR' | 'ANNUITY';
 
 export type MortgageInstallmentPlan = {
+  date: Date;
+  dateString: string;
   month: string;
+  year: number;
   principalRepayment: number;
   interestPayment: number;
   totalPayment: number;
@@ -67,7 +70,7 @@ export function mortgageCalculator(
   const extraPaymentsMap = new Map();
   extraPayments.forEach(({ amount, date }) => {
     extraPaymentsMap.set(date, amount);
-    totalExtraPayments += amount; // Sum of all extra payments
+    // totalExtraPayments += amount; // Sum of all extra payments
   });
 
   // For annuity mortgage, calculate the fixed total monthly payment (principal + interest combined)
@@ -107,6 +110,7 @@ export function mortgageCalculator(
 
     // Check if there is an extra payment for the current month
     const extraPayment = extraPaymentsMap.get(formattedDate) || 0;
+    totalExtraPayments += extraPayment; // Sum of all extra payments
 
     // Reduce outstanding balance with principal repayment and any extra payments
     if (type === "LINEAR") {
@@ -120,6 +124,9 @@ export function mortgageCalculator(
 
     // Push the installment data into the array
     installments.push({
+      date: currentDate,
+      dateString: currentDate.toISOString(),
+      year: currentDate.getFullYear(),
       month: `${currentDate.toLocaleString("default", {
         month: "short",
       })} ${currentDate.getFullYear()}`,

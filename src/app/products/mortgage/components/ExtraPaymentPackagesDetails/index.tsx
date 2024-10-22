@@ -6,6 +6,7 @@ import { MortgagePlan } from "../../utils/mortgageCalculator";
 import "./index.scss";
 import DataTable from "@/app/components/DataTable";
 import MortgageSummary from "../MortgageSummary";
+import ChartRegularAndExtraPayComparison from "../ChartRegularAndExtraPayComparison";
 
 export type ExtraPaymentPackagesDetailsProps = {
   mortgageData: MortgageData;
@@ -22,11 +23,24 @@ export default function ExtraPaymentPackagesDetails({
     <>
       <MortgageSummary mortgagePlan={paymentPlanExtra} />
 
+      <ChartRegularAndExtraPayComparison
+        mortgageData={mortgageData}
+        paymentPlan={paymentPlanRegular}
+      />
+
+      <br />
       <h4>This will be your payment plan with extra payment</h4>
       <DataTable
         config={{ height: 400 }}
         dataItems={paymentPlanExtra.installments}
         columns={[
+          {
+            label: "Year",
+            key: "custom",
+            custom: (item) => {
+              return item.month.toString().split(" ")[1];
+            },
+          },
           { label: "Month", key: "month" },
           {
             label: "Interest Payment",
