@@ -20,6 +20,7 @@ import {
 } from "../../utils/mortgageCalculator";
 import { groupByYear } from "@/app/utils/groupByYear";
 import { reduceDataSet } from "@/app/utils/reduceDataSet";
+import { off } from "process";
 
 export type ChartInstallmentViewProps = {
   mortgageData: MortgageData;
@@ -35,8 +36,7 @@ export default function ChartInstallmentView({
   let chartIns;
 
   useEffect(() => {
-    console.log("Payment Plan", paymentPlan.installments);
-    const groupByYearData = reduceDataSet(paymentPlan.installments);
+    const groupByYearData = paymentPlan.installments; // reduceDataSet(paymentPlan.installments);
     const data = groupByYearData.reduce((array, installment) => {
       if (!array.find(i => i.date === installment.dateString.split("-")[0])) { // just to prevent the duplicate year entry
         array.push({
@@ -75,9 +75,9 @@ export default function ChartInstallmentView({
     // date: {
     //   sync: true,
     // },
-    // type: {
-    //   values: ["purchase_receive_amount", "sale_amount"],
-    // },
+    type: {
+      values: ["purchase_receive_amount", "sale_amount"],
+    },
     value: {
       alias: "Monthly Installment (Principle + Interest)",
       min: 0,
@@ -99,10 +99,10 @@ export default function ChartInstallmentView({
 
   return (
     <Chart
-      padding={[10, 60, 100, 60]}
+      padding={[10, 60, 140, 60]}
       scale={scale}
       autoFit
-      height={350}
+      height={450}
       data={data}
       // theme={{ maxColumnWidth: 40 }}
       onGetG2Instance={(chart) => {
@@ -143,9 +143,9 @@ export default function ChartInstallmentView({
         name="years"
         title
         position="bottom"
-        label={{ rotate: 0, offsetX: -20, offsetY: -5 }}
+        label={{ rotate: 0, offsetX: 0, offsetY: 0 }}
       />
-      <View data={rateData} scale={scale} padding={0}>
+      <View data={rateData} padding={0}>
         <Legend name="rateType" />
         <Axis name="rate" title position="right" />
         <Line

@@ -219,7 +219,7 @@ export function InputForm({
             <Dropdown
               menu={{
                 items: scheme,
-                onClick: (e) => setFormData({ ...formData, scheme: e.key }),
+                onClick: (e) => setFormData({ ...formData, scheme: e.key as MortgageType }),
               }}
             >
               <Button style={{ width: "100%" }}>

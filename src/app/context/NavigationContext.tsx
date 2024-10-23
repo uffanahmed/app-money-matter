@@ -16,8 +16,8 @@ const useNavigationContextValue = () => {
     //   defaultProductOption = localStorage.getItem('activeProductOption') as ProductOptions;
     // }
 
-    const [activeProduct, setActiveProduct] = useState<Product>(defaultProduct || '');
-    const [activeProductOption, setActiveProductOption] = useState<ProductOptions>(defaultProductOption || '');
+    const [activeProduct, setActiveProduct] = useState<Product>((defaultProduct || '') as Product);
+    const [activeProductOption, setActiveProductOption] = useState<ProductOptions>((defaultProductOption || '') as ProductOptions);
 
     const setterActiveProduct = (product: Product) => {
       const p = productDefinition.find((p: ProductDefinition) => p.key === product);
@@ -28,7 +28,7 @@ const useNavigationContextValue = () => {
         localStorage.setItem('activeProductOption', firstOption);
       }
 
-      setActiveProductOption(firstOption)
+      setActiveProductOption(firstOption as ProductOptions)
       setActiveProduct(product)
     }
     const setterActiveProductOption = (option: ProductOptions) => {

@@ -108,21 +108,21 @@ export default function ChartRegularAndExtraPayComparison({
     setSeries(sortedArray);
   }, []);
 
-  const handleTooltipChange = useCallback((e) => {
-    const chart: any = chartRef.current;
-    const annotationControler = chart.getController("annotation");
-    annotationControler.option
-      .filter((item) => item.name == "desc")
-      .forEach((item) => {
-        if (item.position[0] == e.data.title) {
-          console.log(annotationControler);
-          item.visible = true;
-        } else {
-          item.visible = false;
-        }
-      });
-    annotationControler.update();
-  }, []);
+  // const handleTooltipChange = useCallback((e) => {
+  //   const chart: any = chartRef.current;
+  //   const annotationControler = chart.getController("annotation");
+  //   annotationControler.option
+  //     .filter((item) => item.name == "desc")
+  //     .forEach((item) => {
+  //       if (item.position[0] == e.data.title) {
+  //         console.log(annotationControler);
+  //         item.visible = true;
+  //       } else {
+  //         item.visible = false;
+  //       }
+  //     });
+  //   annotationControler.update();
+  // }, []);
 
   return (
     <>
@@ -133,12 +133,12 @@ export default function ChartRegularAndExtraPayComparison({
         data={series}
         padding={[60, 20, 70, 50]}
         height={350}
-        onGetG2Instance={(chart) => {
-          chartRef.current = chart;
-          chart.on("tooltip:change", handleTooltipChange);
-        }}
+        // onGetG2Instance={(chart) => {
+        //   chartRef.current = chart;
+        //   chart.on("tooltip:change", handleTooltipChange);
+        // }}
       >
-        <Tooltip shared showCrosshairs />
+        {/* <Tooltip shared showCrosshairs /> */}
         <Legend offsetX={15} position="top-left" />
         <Axis name="date" />
         {/* <Axis name="y" /> */}

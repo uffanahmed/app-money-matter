@@ -13,7 +13,7 @@ export default function Auth() {
   useEffect(() => {
     setIsSessionValid(localStorage.getItem('isSessionValid') === '1' ? true : false);
     setActiveProduct(localStorage.getItem('activeProduct') as Product || Product.Mortgage);
-    setActiveProductOption((localStorage.getItem('activeProductOption') as ProductOptions) || '');
+    setActiveProductOption(((localStorage.getItem('activeProductOption') || '') as ProductOptions));
   }, []);
 
   return (
