@@ -1,0 +1,22 @@
+.group-chart {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  &-left {
+    text-align: center;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: column;
+    padding: 0 10px;
+  }
+  &-right {
+    text-align: center;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: column;
+    padding: 0 10px;
+  }
+}

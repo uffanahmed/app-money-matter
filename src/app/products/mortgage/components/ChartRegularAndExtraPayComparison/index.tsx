@@ -16,9 +16,7 @@ import {
   Tooltip,
 } from "bizcharts";
 import { MortgageData } from "../InputForm";
-import {
-  MortgagePlan,
-} from "../../utils/mortgageCalculator";
+import { MortgagePlan } from "../../utils/mortgageCalculator";
 import { groupByYear } from "@/app/utils/groupByYear";
 import { reduceDataSet } from "@/app/utils/reduceDataSet";
 
@@ -34,6 +32,7 @@ export default function ChartRegularAndExtraPayComparison({
   paymentExtra,
 }: ChartRegularAndExtraPayComparisonProps) {
   const [series, setSeries] = useState<any>();
+  const [scale, setScale] = useState<any>();
   const [markList, setMarkList] = useState<any>([]);
   const chartRef = useRef();
 
@@ -41,21 +40,7 @@ export default function ChartRegularAndExtraPayComparison({
     if (num === null || typeof num === "undefined") return "--";
     const multi = 1000;
     const res = Math.floor(num * multi) / 10;
-    return typeof res === "number" ? `${(res / 100000)}K` : "-";
-  };
-
-  const scale = {
-    // rate: {
-    //   nice: true,
-    // },
-    rate: {
-      alias: "Outstanding Balance",
-      min: 0,
-      tickCount: 8,
-      formatter: (data) => ratioConvert(data),
-      // type: 'timeCat',
-      type: "linear-strict",
-    },
+    return typeof res === "number" ? `${res / 100000}K` : "-";
   };
 
   useEffect(() => {
@@ -70,7 +55,8 @@ export default function ChartRegularAndExtraPayComparison({
       paymentRegularArray.push({
         name: "Outstanding balance with regular payment",
         date: installment.dateString.split("-")[0],
-        outstandingBalanceRegularPayment: +Math.round(installment.outstandingBalance) || 0,
+        outstandingBalanceRegularPayment:
+          +Math.round(installment.outstandingBalance) || 0,
       });
       interestRegularArray.push({
         name: "Interest with regular payment",
@@ -85,7 +71,8 @@ export default function ChartRegularAndExtraPayComparison({
       paymentExtraArray.push({
         name: "Outstanding balance with extra payment",
         date: installment.dateString.split("-")[0],
-        outstandingBalanceExtraPayment: +Math.round(installment.outstandingBalance) || 0,
+        outstandingBalanceExtraPayment:
+          +Math.round(installment.outstandingBalance) || 0,
       });
       interestExtraArray.push({
         name: "Interest with extra payment",
@@ -105,6 +92,56 @@ export default function ChartRegularAndExtraPayComparison({
       ...extraPaymentArray,
       ...extraInterestArray,
     ].sort((a, b) => a.date - b.date);
+
+    // =============================================
+    const maxPayment = paymentRegularArray.reduce((max, item) => {
+      return Math.max(max, item.outstandingBalanceRegularPayment);
+    }, 0);
+
+    const scale = {
+      // rate: {
+      //   nice: true,
+      // },
+      interestRegularPayment: {
+        // alias: "Outstanding Balance",
+        min: 0,
+        max: maxPayment,
+        tickCount: 8,
+        // formatter: (data) => ratioConvert(data),
+        // type: 'timeCat',
+        // formatter: (data) => ratioConvert(data),
+        type: "linear-strict",
+      },
+      interestExtraPayment: {
+        // alias: "Monthly Installment (Principle + Interest)",
+        min: 0,
+        max: maxPayment,
+        tickCount: 8,
+        // type: 'timeCat',
+        // formatter: (data) => ratioConvert(data),
+        type: "linear-strict",
+      },
+      outstandingBalanceRegularPayment: {
+        // alias: "Monthly Installment (Principle + Interest)",
+        min: 0,
+        max: maxPayment,
+        tickCount: 8,
+        // type: 'timeCat',
+        // formatter: (data) => ratioConvert(data),
+        type: "linear-strict",
+      },
+      outstandingBalanceExtraPayment: {
+        // alias: "Monthly Installment (Principle + Interest)",
+        min: 0,
+        tickCount: 8,
+        max: maxPayment,
+        // type: 'timeCat',
+        // formatter: (data) => ratioConvert(data),
+        type: "linear-strict",
+      },
+    };
+
+    setScale(scale);
     setSeries(sortedArray);
   }, []);
 
@@ -131,8 +168,8 @@ export default function ChartRegularAndExtraPayComparison({
         scale={scale}
         interactions={["element-active"]}
         data={series}
-        padding={[60, 20, 70, 50]}
-        height={350}
+        padding={[40, 55, 70, 55]}
+        height={400}
         // onGetG2Instance={(chart) => {
         //   chartRef.current = chart;
         //   chart.on("tooltip:change", handleTooltipChange);

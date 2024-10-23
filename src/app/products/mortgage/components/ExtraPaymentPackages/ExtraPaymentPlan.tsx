@@ -134,6 +134,7 @@ export function ExtraPaymentPlan({
               ]}
               onCancel={() => setModalOpen(false)}
               width={1000}
+              maskClosable={false}
             >
               <br />
               {mortgagePlanExtraPayment && (

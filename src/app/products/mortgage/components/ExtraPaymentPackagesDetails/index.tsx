@@ -8,6 +8,7 @@ import DataTable from "@/app/components/DataTable";
 import MortgageSummary from "../MortgageSummary";
 import ChartInstallmentView from "../ChartInstallmentView";
 import ChartRegularAndExtraPayComparison from "../ChartRegularAndExtraPayComparison";
+import ChartPaymentRatioComparison from "../ChartPaymentRatioComparison";
 
 export type ExtraPaymentPackagesDetailsProps = {
   mortgageData: MortgageData;
@@ -56,6 +57,15 @@ export default function ExtraPaymentPackagesDetails({
             key: "outstandingBalance",
           },
         ]}
+      />
+
+      <br />
+      <ChartPaymentRatioComparison
+        mortgageData={mortgageData}
+        paymentRegular={paymentPlanRegular}
+        paymentExtra={paymentPlanExtra}
+        titleRegular={"Interest and Principle amount ratio with regular payment"}
+        titleExtra={"Interest and Principle amount ratio with extra payment"}
       />
 
       <br />
