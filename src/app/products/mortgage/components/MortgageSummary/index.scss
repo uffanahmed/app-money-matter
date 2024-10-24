@@ -13,6 +13,18 @@
             background-color: #d2d2d2;
             padding: 2px 6px;
             font-weight: normal;
+
+            cursor: default;
+            background: linear-gradient(to right, #d2d2d2 50%, #fff 0%);
+            background-size: 200% 100%;
+            background-position:right bottom;
+            transition:all 1s ease;
+            animation: bgAnimation 1s linear both;
         }
+    }
+
+    @keyframes bgAnimation {
+        from {background-position:right bottom;}
+        to {background-position:left bottom;}
     }
 }
